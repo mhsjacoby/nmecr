@@ -22,6 +22,8 @@ Additional influential independent variables, such as product quantity, number o
 # Mean Model
 
 The mean model is simplest in the toolkit. The model form is:
+and two types:
+
 $$Consumption_{pred} = Consumption_{avg}$$
 
 $Consumption_{pred} = Consumption_{avg}$
