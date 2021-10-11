@@ -24,6 +24,8 @@ Additional influential independent variables, such as product quantity, number o
 The mean model is simplest in the toolkit. The model form is:
 $$Consumption_{pred} = Consumption_{avg}$$
 
+$Consumption_{pred} = Consumption_{avg}$
+
 ![](https://user-images.githubusercontent.com/30964555/135516727-7761a61d-1b1d-4583-af4b-d11428d8fdf0.gif)
 
 and the model predictions are simply the average of the observed energy consumption. The mean model is a good benchmarking model and can be used for comparison against more complex models.  
