@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+<link rel="stylesheet" href="file:///c:\Users\mjacoby\.vscode\extensions\goessner.mdmath-2.7.4\themes\default\style.css">
+
+</head>
+<body class="markdown-body">
+<p>Maggie edit</p>
+<p>nmecr provides a collection of 11 algorithms and 5 main utility functions for streamlining impact quantification for energy efficiency projects in buildings.</p>
+<p>These are:</p>
+<ul>
+<li><a href="#mean-model">Mean Model</a></li>
+<li><a href="#change-point-models">Change-point models</a>
+<ul>
+<li><a href="#two-parameter-model">Two Parameter Model</a></li>
+<li><a href="#three-parameter-cooling-and-heating-models">Three Parameter Cooling and Heating Models</a></li>
+<li><a href="#four-parameter-model">Four Parameter Model</a></li>
+<li><a href="#five-parameter-model">Five Parameter Model</a></li>
+</ul>
+</li>
+<li><a href="#degree-day-models">Degree Day Models</a>
+<ul>
+<li><a href="#heating-degree-day-model">Heating Degree Day Model</a></li>
+<li><a href="#cooling-degree-day-model">Cooling Degree Day Model</a></li>
+<li><a href="#heating-and-cooling-degree-day-model">Heating and Cooling Degree Day Model</a></li>
+</ul>
+</li>
+<li><a href="#time-of-week-model">Time-of-Week Model</a></li>
+<li><a href="#time-of-week-and-temperature-model">Time-of-Week and Temperature Model</a></li>
+</ul>
+<p>Additional influential independent variables, such as product quantity, number of occupants etc., can be added to all algorithms except the mean model to improve model accuracy over a dataset.</p>
+<h1 id="mean-model">Mean Model</h1>
+<p>The mean model is simplest in the toolkit. The model form is:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>C</mi><mi>o</mi><mi>n</mi><mi>s</mi><mi>u</mi><mi>m</mi><mi>p</mi><mi>t</mi><mi>i</mi><mi>o</mi><msub><mi>n</mi><mrow><mi>p</mi><mi>r</mi><mi>e</mi><mi>d</mi></mrow></msub><mo>=</mo><mi>C</mi><mi>o</mi><mi>n</mi><mi>s</mi><mi>u</mi><mi>m</mi><mi>p</mi><mi>t</mi><mi>i</mi><mi>o</mi><msub><mi>n</mi><mrow><mi>a</mi><mi>v</mi><mi>g</mi></mrow></msub></mrow><annotation encoding="application/x-tex">Consumption_{pred} = Consumption_{avg}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord mathnormal">s</span><span class="mord mathnormal">u</span><span class="mord mathnormal">m</span><span class="mord mathnormal">pt</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">re</span><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord mathnormal">s</span><span class="mord mathnormal">u</span><span class="mord mathnormal">m</span><span class="mord mathnormal">pt</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">vg</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></span></eqn></section></math>
+<p><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mi>o</mi><mi>n</mi><mi>s</mi><mi>u</mi><mi>m</mi><mi>p</mi><mi>t</mi><mi>i</mi><mi>o</mi><msub><mi>n</mi><mrow><mi>p</mi><mi>r</mi><mi>e</mi><mi>d</mi></mrow></msub><mo>=</mo><mi>C</mi><mi>o</mi><mi>n</mi><mi>s</mi><mi>u</mi><mi>m</mi><mi>p</mi><mi>t</mi><mi>i</mi><mi>o</mi><msub><mi>n</mi><mrow><mi>a</mi><mi>v</mi><mi>g</mi></mrow></msub></mrow><annotation encoding="application/x-tex">Consumption_{pred} = Consumption_{avg}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord mathnormal">s</span><span class="mord mathnormal">u</span><span class="mord mathnormal">m</span><span class="mord mathnormal">pt</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">re</span><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord mathnormal">s</span><span class="mord mathnormal">u</span><span class="mord mathnormal">m</span><span class="mord mathnormal">pt</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">vg</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></eq></p>
+<p><img src="https://user-images.githubusercontent.com/30964555/135516727-7761a61d-1b1d-4583-af4b-d11428d8fdf0.gif" alt="" class="loading" id="image-hash--1194543969" data-src="https://user-images.githubusercontent.com/30964555/135516727-7761a61d-1b1d-4583-af4b-d11428d8fdf0.gif"></p>
+<p>and the model predictions are simply the average of the observed energy consumption. The mean model is a good benchmarking model and can be used for comparison against more complex models.</p>
+<h1 id="change-point-models">Change-point Models</h1>
+<p>In modeling building energy consumption, one of the most common regressor (or feature or independent variable) is the outdoor air temperature. Many of the building's core energy systems, such as HVAC, are directly impacted by it. Change-point models are a class of models that capture the trends of energy consumption over various segments of the temperature profile. These models differ mainly in their derived temperature features. The figure below illustrates the difference between the various flavors of these models.</p>
+<p><img src="https://user-images.githubusercontent.com/30964555/135517973-c6a322cd-8937-4005-888a-76a073bbbed2.gif" alt="" class="loading" id="image-hash-988699201" data-src="https://user-images.githubusercontent.com/30964555/135517973-c6a322cd-8937-4005-888a-76a073bbbed2.gif"></p>
+<p><font size="1"> <a href="https://www.sciencedirect.com/science/article/abs/pii/S0378778814009645">Image Source</a> </font></p>
+<p>Note that all model forms below reference this figure and its naming convention.</p>
+<h2 id="two-parameter-model">Two-Parameter Model</h2>
+<p>A two-parameter model (or a simple linear regression), is a regression using one independent variable, and its model form is:</p>
+<p><img src="https://user-images.githubusercontent.com/30964555/135515611-be82bb65-2010-49f5-b6ee-74222f9bb5ff.gif" alt="" class="loading" id="image-hash-2102259766" data-src="https://user-images.githubusercontent.com/30964555/135515611-be82bb65-2010-49f5-b6ee-74222f9bb5ff.gif"></p>
+<h2 id="three-parameter-cooling-and-heating-models">Three Parameter Cooling and Heating Models</h2>
+<p>Three Parameter models are appropriate for modeling building energy use that varies linearly with an independent variable over part of the range and remains constant over the other part (see the second panel in the image above).</p>
+<p>The model forms are:</p>
+<p><img src="https://user-images.githubusercontent.com/30964555/135522767-880c5f43-6883-4241-8e3b-b86f24381a90.gif" alt="" class="loading" id="image-hash--213734627" data-src="https://user-images.githubusercontent.com/30964555/135522767-880c5f43-6883-4241-8e3b-b86f24381a90.gif"></p>
+<p><img src="https://user-images.githubusercontent.com/30964555/135522805-6ca2beec-cfc9-4634-948d-44d97aebf31b.gif" alt="" class="loading" id="image-hash-834324315" data-src="https://user-images.githubusercontent.com/30964555/135522805-6ca2beec-cfc9-4634-948d-44d97aebf31b.gif"></p>
+<p>The + and - above indicate that the values of the terms in the parenthesis will be set to zero when they are negative and positive respectively.</p>
+<h4 id="when-should-use-these-models">When should use these models?</h4>
+<p>Imagine you are modeling a system that predominantly delivers cooling to a building. Up until a certain temperature, the building does not need cooling and this system stays dormant. However, above this temperature, known as a change-point in the industry, the system has to start cooling the building and use energy in the process. In a three-parameter cooling model, the energy use of the system is 'modeled' to vary linearly with an <em>increase</em> in outdoor air temperature above the identified change-point.</p>
+<p>The three-parameter heating model is used in the opposite scenario, where the energy use starts to increase linearly with a <em>decrease</em> in outdoor air temperature.</p>
+<h2 id="four-parameter-model">Four Parameter Model</h2>
+<p>Four parameter models extend the three parameter models by replacing the initial flat-sloped segment with a positive or negative-sloped segment depending on the type of model: cooling vs heating. The third panel in the image above shows two examples of Four Parameter models. The model form is:</p>
+<p><img src="https://user-images.githubusercontent.com/30964555/135523748-b0288af0-82db-410d-a780-1a154247d434.gif" alt="" class="loading" id="image-hash--1427828102" data-src="https://user-images.githubusercontent.com/30964555/135523748-b0288af0-82db-410d-a780-1a154247d434.gif"></p>
+<p>As before, the + and - above indicate that the values of the terms in the parenthesis will be set to zero when they are negative and positive respectively.</p>
+<h4 id="when-should-you-use-this-model">When should you use this model?</h4>
+<p>These models are appropriate for modeling heating and cooling energy use in variable-air-volume systems.</p>
+<h2 id="five-parameter-model">Five Parameter Model</h2>
+<p>The model form for a five parameter model is:</p>
+<p><img src="https://user-images.githubusercontent.com/30964555/135523843-49a2a469-6e1c-408a-a0d9-8a60da058a6c.gif" alt="" class="loading" id="image-hash--419769363" data-src="https://user-images.githubusercontent.com/30964555/135523843-49a2a469-6e1c-408a-a0d9-8a60da058a6c.gif"></p>
+<p>The 5P algorithm requires an initial set of change-points to determine the optimum changepoints. This can be set via the <strong>initial_breakpoints</strong> argument in <code>nmecr::assign_model_inputs()</code>.</p>
+<h4 id="when-should-you-use-this-model">When should you use this model?</h4>
+<p>Five parameter models are appropriate for modeling whole-building electricity consumption from buildings with electric heat pumps or both electric chillers and electric resistance heating.</p>
+<h1 id="degree-day-models">Degree Day Models</h1>
+<h2 id="heating-degree-day-model">Heating Degree Day Model</h2>
+<h2 id="cooling-degree-day-model">Cooling Degree Day Model</h2>
+<h2 id="heating-and-cooling-degree-day-model">Heating and Cooling Degree Day Model</h2>
+<h2 id="time-of-week-and-temperature-model">Time-of-Week and Temperature Model</h2>
+<p>The Time-of-Week and Temperature Model in nmecr is based on the <a href="https://buildings.lbl.gov/publications/quantifying-changes-building">original paper</a> from Lawrence Berkeley National Laboratory (LBNL) and their <a href="https://github.com/LBNL-ETA/RMV2.0">implementation</a> of the algorithm.</p>
+<p>The two main components of the model are:</p>
+<ul>
+<li>a time-of-week indicator variable, and</li>
+<li>a piece-wise linear and continuous outdoor air temperature dependence</li>
+</ul>
+<h4 id="original-algorithm">Original Algorithm</h4>
+<p>The original algorithm has the following key features:</p>
+<ol>
+<li>
+<p>A week is divided into 15-minute intervals, i.e. 672 time-of-week variables</p>
+</li>
+<li>
+<p>Outdoor air temperature is divided into six equally-sized temperature intervals. For example, if a facility experienced a temperature profile ranging from 50F to 110F, the temperature segments would be 50-60F, 60-70F, 70-80F, 70-90F, 90-100F, and 100-110F. The paper recommends using at least twice the expected number of change-points.</p>
+</li>
+<li>
+<p>The temperature parameters are only used when a facility is operating in occupied mode</p>
+</li>
+<li>
+<p>The facility's response to temperature is not expected to change at night. Essentially, this translates to six temperature segments in the occupied mode and 1 temperature segment (that includes all data) in the unoccupied mode.</p>
+</li>
+<li>
+<p>The start and end of the occupied mode are manually determined by visualizing average load profiles on non-DR days.</p>
+</li>
+</ol>
+<h4 id="changes-in-the-implementation-rmv20">Changes in the implementation (<a href="https://github.com/LBNL-ETA/RMV2.0">RMV2.0</a>)</h4>
+<p>The following are the main clarifications/additions in LBNL's implementation of the algorithm:</p>
+<ol>
+<li>
+<p>Occupied and unoccupied modes are based on a regression of load on outside air temperature. Times of the week that the regression usually underpredicts the load are occupied and the rest are called unoccupied. More specifically, the times of the week that are underpredicted 65% of the time are assumed to be in the occupied mode.</p>
+</li>
+<li>
+<p>The algorithm checks to ensure there are at least 20 data points above the highest temperature change-point and 20 data points below the lowest change-point. The algorithm requires at least 1 change-point to run.</p>
+</li>
+<li>
+<p>The temperature segment width is determined by the user-requested number of segments. Each temperature segment is equal in width.</p>
+</li>
+<li>
+<p>The same temperature segments are applied to both occupied and unoccupied modes</p>
+</li>
+<li>
+<p>In case of a lack of temperature data, the algorithm can be run as a Time-of-Week (see below)</p>
+</li>
+<li>
+<p>Both TOWT and TOW can be run on 15-min, hourly, and daily intervals</p>
+</li>
+</ol>
+<h4 id="further-changes-implemented-in-nmecr">Further changes implemented in nmecr</h4>
+<ol>
+<li>
+<p>The occupied and unoccupied mode determination is based on a user input, accessed through the formal argument <strong>occupancy_threshold</strong> within <code>nmecr::assign_model_inputs()</code>. The default value is set to 0.65 to match the RMV2.0 implementation. In certain scenarios, the split into occupied and unoccupied may not be required or desired. In these cases, the occupancy_threshold   can be set to 1 to create one overall model. A practical application of this is the case when occupancy information is available as   an additional variable. The TOWT model can then be run by setting occupancy_threshold = 1 and the additional variable as a proxy for  occupancy.</p>
+</li>
+<li>
+<p>Temperature change-points can be manually specified when needed. This behavior can be accessed through <strong>has_temp_knots_defined</strong> and <strong>temp_knots_value</strong> within <code>nmecr::assign_model_inputs()</code>. If has_temp_knots_defines is set to False (F), the algorithm determines the change-points internally. On the other hand, if this argument is set to True (T), it looks to temp_knots_value for the specified change-points. Note that temperature change-points are referred to as temperature knots in the code.</p>
+</li>
+<li>
+<p>The temperature segments can either be of equal width or have equal number of data points in them. This behavior is accessed through <strong>equal_temp_segment_points</strong> within <code>nmecr::assign_model_inputs()</code>. If set to True (T), the algorithm determines the temperature segments such that each has equal number of data points in it. If set to False (F), the segments are determined such that they are equal in width.</p>
+</li>
+</ol>
+<p>The model forms for TOWT are:</p>
+<p><img src="https://user-images.githubusercontent.com/30964555/135546747-630e5289-b7b6-4516-9aed-44f00a15055d.png" alt="" class="loading" id="image-hash-50425890" data-src="https://user-images.githubusercontent.com/30964555/135546747-630e5289-b7b6-4516-9aed-44f00a15055d.png"></p>
+<p><img src="https://user-images.githubusercontent.com/30964555/135546776-ad2734a9-014b-4f01-aac9-c0ef55a484ad.png" alt="" class="loading" id="image-hash-1388656700" data-src="https://user-images.githubusercontent.com/30964555/135546776-ad2734a9-014b-4f01-aac9-c0ef55a484ad.png"></p>
+<p>Note that the actual model forms depend on a number of factors, and the actual model form may be different than the ones shown above.</p>
+<p>Notice that there is no (is_Fri) term or (is_Sun) term in the above eqauations. This is because the average energy use on these days is captured by the intercept the respective equations.</p>
+<p>The is_* term implies that the value can be either a 0 or a 1. For example, is_Mon will be set to 1 when the timestamp is a Monday to 0 for all other days of the week.</p>
+<h1 id="time-of-week-model">Time-of-Week Model</h1>
+<p>The time-of-week model is a simplification of the time-of-week and temperature model. It is a linear model with indicator variables for each 'time-of-week'. In a model based on daily interval data, there are 7 indicator variables, for each day of the week. Similarly, in a model based on hourly interval data, there are 168 indicator variables, for each hour of the week. The model form, therefore, is:</p>
+<h5 id="daily-interval">Daily Interval</h5>
+<p><img src="https://user-images.githubusercontent.com/30964555/135546500-4f5fb3e4-8531-4db3-b04b-fe4a13456cfd.png" alt="" class="loading" id="image-hash-250997045" data-src="https://user-images.githubusercontent.com/30964555/135546500-4f5fb3e4-8531-4db3-b04b-fe4a13456cfd.png"></p>
+<p>Notice that there is no (is_Sun) term in the above equation. The average energy use for Sundays is captured by the intercept term (C) in the above equation.</p>
+<h5 id="hourly-interval">Hourly Interval</h5>
+<p><img src="https://user-images.githubusercontent.com/30964555/135546534-04403e97-dfd1-4e84-a4b5-a019153bf8ef.png" alt="" class="loading" id="image-hash-1832752402" data-src="https://user-images.githubusercontent.com/30964555/135546534-04403e97-dfd1-4e84-a4b5-a019153bf8ef.png"></p>
+<p>Similarly, there is no (is_tow168) term in the above equation.</p>
+
+</body>
+</html>
