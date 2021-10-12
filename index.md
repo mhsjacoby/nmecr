@@ -1,5 +1,3 @@
-Maggie edit
-
 nmecr provides a collection of 11 algorithms and 5 main utility functions for streamlining impact quantification for energy efficiency projects in buildings. 
 
 These are:
@@ -22,11 +20,10 @@ Additional influential independent variables, such as product quantity, number o
 # Mean Model
 
 The mean model is simplest in the toolkit. The model form is:
-and two types:
-
-$$Consumption_{pred} = Consumption_{avg}$$
 
 $Consumption_{pred} = Consumption_{avg}$
+
+
 
 ![](https://user-images.githubusercontent.com/30964555/135516727-7761a61d-1b1d-4583-af4b-d11428d8fdf0.gif)
 
