@@ -1,10 +1,4 @@
----
-theme: jekyll-theme-slate
-layout: pages
-title: nmecr
----
-
-1745 addition
+1749 addition
 
 nmecr provides a collection of 11 algorithms and 5 main utility functions for streamlining impact quantification for energy efficiency projects in buildings. 
 
