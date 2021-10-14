@@ -1,3 +1,11 @@
+---
+theme: jekyll-theme-slate
+layout: pages
+title: nmecr
+---
+
+
+
 nmecr provides a collection of 11 algorithms and 5 main utility functions for streamlining impact quantification for energy efficiency projects in buildings. 
 
 These are:
